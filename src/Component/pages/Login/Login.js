@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Typography } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import Checkbox from "@material-ui/core/Checkbox";
@@ -11,65 +11,30 @@ import Lock from "@material-ui/icons/Lock";
 import Person from "@material-ui/icons/Person";
 import Copyright from "@material-ui/icons/Copyright";
 import Phone from "@material-ui/icons/Phone";
+import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { SignIn } from "../../../api/";
 import ActionType from "../../../redux/reducers/constant";
+import { Navbar, Dashboard } from "../../";
 
 //image
 import LoginBackground from "../../assets/images/background-login.png";
 import Logo from "../../assets/images/logo.svg";
 
-// const initialState = { username: "", password: "" };
-
-const Login = () => {
+const Login = ({ setLogin, message, setMessage, isAuth }) => {
   //USED STATE
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [message, setMessage] = useState("");
-  const [auth, setAuth] = useState("");
 
-  //REACT-REDUX
-  const dispatch = useDispatch();
-
-  //LOGIN FUNCTION
-  const setLogin = async (username, password) => {
-    const body = {
-      rqlogin: {
-        USER_ID: username,
-        PASSWORD: password,
-        IP: "121.131.1313",
-      },
-    };
-    const userLogin = await SignIn(body);
-    let { RESULT_CODE, MESSAGE } = userLogin.data.rsLogin;
-    const SessionLogin =
-      userLogin.data.rsLogin.SESSION_LOGIN_INFO[0].SESSION_LOGIN_ID;
-
-    if (RESULT_CODE === "01") {
-      setMessage(MESSAGE);
-      localStorage.setItem("auth", SessionLogin);
-      setAuth(SessionLogin);
-      dispatch({
-        type: ActionType.SET_SESSION_LOGIN_ID,
-        sessionLoginId: SessionLogin,
-      });
-      dispatch({ type: ActionType.SET_USER_ID, userId: username });
-    } else {
-      setAuth(null);
-      setMessage(MESSAGE);
-    }
-    dispatch({ type: ActionType.LOADING, loading: false });
-    console.log(userLogin);
-  };
+  const history = useHistory();
 
   //SUBMITTING THE LOGIN FORM
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch({ type: ActionType.LOADING, loading: true });
     if (username && password) {
       setLogin(username, password);
     } else {
-      dispatch({ type: ActionType.LOADING, loading: false });
+      setMessage("username atau password tidak boleh kosong");
     }
   };
 

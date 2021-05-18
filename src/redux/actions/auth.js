@@ -31,6 +31,15 @@ export const key = (body) => async (dispatch) => {
     // console.log(key);
 
     dispatch({ type: ActionType.SET_CLIENT_KEY, clientKey: key });
+    dispatch({
+      type: ActionType.SET_SESSION_LOGIN_ID,
+      sessionLoginId: localStorage.getItem("auth"),
+    });
+
+    dispatch({
+      type: ActionType.SET_USER_ID,
+      userId: localStorage.getItem("userId"),
+    });
   } catch (error) {
     console.log(error);
   }

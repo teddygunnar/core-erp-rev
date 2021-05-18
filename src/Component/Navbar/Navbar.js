@@ -1,10 +1,13 @@
 import React from "react";
+import { AppBar, Toolbar, Typography, Button } from "@material-ui/core";
 
 const Navbar = () => {
   return (
-    <div>
-      <h1>Navbar</h1>
-    </div>
+    <AppBar>
+      <Toolbar>
+        <Typography variant="h4">Navbar</Typography>
+      </Toolbar>
+    </AppBar>
   );
 };
 
