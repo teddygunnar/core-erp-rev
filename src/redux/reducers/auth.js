@@ -41,6 +41,10 @@ const reducer = (state = globalState, action) => {
         ...state,
         Loading: action.loading,
       };
+
+    case ActionType.LOGOUT:
+      localStorage.clear();
+      return { ...state, Auth: null, Loading: false };
     default:
       return state;
   }

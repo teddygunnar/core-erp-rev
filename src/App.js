@@ -4,9 +4,8 @@ import { Login, Dashboard } from "./Component";
 // import { GetClientKey } from "./api";
 import { key } from "./redux/actions/auth";
 import "./App.css";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import { SignIn } from "./api";
+import { useSelector, useDispatch } from "react-redux";
+import { SignIn, CompanyList } from "./api";
 import ActionType from "./redux/reducers/constant";
 
 const App = () => {
@@ -16,8 +15,26 @@ const App = () => {
 
   //USED STATE
   const [message, setMessage] = useState("");
+  const [isAuth, setIsAuth] = useState(localStorage.getItem("auth"));
+  const [companyList, setCompanyList] = useState([]);
 
-  const [isAuth, setIsAuth] = useState("");
+  //GET COMPANY LIST
+  const getCompanyList = async (username, session) => {
+    const body = {
+      rqCompanyList: {
+        USER_ID: username,
+        SESSION_LOGIN_ID: session,
+      },
+    };
+    const fetchCompanyList = await CompanyList(body);
+    console.log(fetchCompanyList);
+
+    let { RESULT_CODE } = fetchCompanyList.data.rsCompanyList;
+
+    if (RESULT_CODE === "01") {
+      setCompanyList(fetchCompanyList.data.rsCompanyList.DATA);
+    }
+  };
 
   //LOGIN FUNCTION
   const setLogin = async (username, password) => {
@@ -72,7 +89,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <Switch>
-        {!isAuth.length ? (
+        {!isAuth ? (
           <div>
             <Login
               setLogin={setLogin}
@@ -82,7 +99,12 @@ const App = () => {
           </div>
         ) : (
           <div>
-            <Dashboard />
+            <Dashboard
+              isAuth={isAuth}
+              setCompanyList={setCompanyList}
+              companyList={companyList}
+              getCompanyList={getCompanyList}
+            />
           </div>
         )}
         <Route

@@ -5,6 +5,7 @@ const ActionType = {
   SET_SESSION_LOGIN_ID: "SET_SESSION_LOGIN_ID",
 
   /** =================================================== Utils =================================================== */
+  LOGOUT: "LOGOUT",
   LOADING: "LOADING",
 
   AUTH: "AUTH",

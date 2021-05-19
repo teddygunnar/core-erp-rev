@@ -1,15 +1,15 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Navbar } from "../../";
 
-const Dashboard = () => {
-  useEffect(() => {
-    localStorage.getItem("auth");
-    localStorage.getItem("userId");
-  }, [localStorage]);
-
+const Dashboard = ({ isAuth, setCompanyList, companyList, getCompanyList }) => {
   return (
     <div>
-      <Navbar />
+      <Navbar
+        companyList={companyList}
+        setCompanyList={setCompanyList}
+        getCompanyList={getCompanyList}
+        isAuth={isAuth}
+      />
       <h1>Dashboard</h1>
     </div>
   );

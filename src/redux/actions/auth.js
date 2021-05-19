@@ -13,15 +13,15 @@ import * as api from "../../api/index.js";
 //   }
 // };
 
-export const Login = (body) => async (dispatch) => {
-  try {
-    const userLogin = await api.SignIn(body);
+// export const Login = (body) => async (dispatch) => {
+//   try {
+//     const userLogin = await api.SignIn(body);
 
-    console.log(userLogin);
-  } catch (error) {
-    console.log(error);
-  }
-};
+//     console.log(userLogin);
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
 
 export const key = (body) => async (dispatch) => {
   try {

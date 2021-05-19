@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Typography } from "@material-ui/core";
 import Button from "@material-ui/core/Button";
 import Checkbox from "@material-ui/core/Checkbox";
@@ -11,11 +11,6 @@ import Lock from "@material-ui/icons/Lock";
 import Person from "@material-ui/icons/Person";
 import Copyright from "@material-ui/icons/Copyright";
 import Phone from "@material-ui/icons/Phone";
-import { useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { SignIn } from "../../../api/";
-import ActionType from "../../../redux/reducers/constant";
-import { Navbar, Dashboard } from "../../";
 
 //image
 import LoginBackground from "../../assets/images/background-login.png";
@@ -25,8 +20,6 @@ const Login = ({ setLogin, message, setMessage, isAuth }) => {
   //USED STATE
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
-  const history = useHistory();
 
   //SUBMITTING THE LOGIN FORM
   const handleSubmit = (e) => {
