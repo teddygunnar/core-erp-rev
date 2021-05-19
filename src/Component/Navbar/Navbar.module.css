@@ -6,13 +6,9 @@
   padding: 5px 20px !important;
 }
 
-.toolBar {
-}
-
 .userBox {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
-  margin-left: 25px;
+  justify-content: center !important;
 }

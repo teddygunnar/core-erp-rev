@@ -5,28 +5,31 @@ import {
   Typography,
   Menu,
   MenuItem,
+  Button,
   IconButton,
 } from "@material-ui/core";
 import Settings from "@material-ui/icons/Settings";
+import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import styles from "./Navbar.module.css";
 import { useDispatch } from "react-redux";
 import ActionType from "../../redux/reducers/constant";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
+import { ArrowDropDown } from "@material-ui/icons";
 
 const Navbar = ({ isAuth, companyList, getCompanyList }) => {
   const [user, setUser] = useState(localStorage.getItem("userId"));
-  const [userAnchorEl, setUserAnchorEl] = useState(null);
+  const [useranchorel, setuseranchorel] = useState(null);
   const [menuAnchorEl, setMenuAnchorEl] = useState(null);
 
   //Breakdown menu user
   const handleClickUser = (event) => {
-    setUserAnchorEl(event.currentTarget);
+    setuseranchorel(event.currentTarget);
   };
 
   const handleCloseUser = () => {
-    setUserAnchorEl(null);
+    setuseranchorel(null);
   };
 
   //Breakdown company list
@@ -38,6 +41,7 @@ const Navbar = ({ isAuth, companyList, getCompanyList }) => {
     setMenuAnchorEl(null);
   };
 
+  //Fetch company data
   useEffect(() => {
     if (isAuth) {
       getCompanyList(
@@ -52,8 +56,10 @@ const Navbar = ({ isAuth, companyList, getCompanyList }) => {
   const dispatch = useDispatch();
   const MySwal = withReactContent(Swal);
 
+  //LOGOUT function
   const logout = () => {
     dispatch({ type: ActionType.LOGOUT });
+    handleCloseUser();
     MySwal.fire({
       title: <p>You're logged out now!</p>,
       footer: "Thanks for coming!",
@@ -71,8 +77,12 @@ const Navbar = ({ isAuth, companyList, getCompanyList }) => {
     >
       <Typography variant="h6">PT. Jala Informatica</Typography>
       <Toolbar className={styles.toolBar}>
-        <IconButton onClick={handleClickMenu}>
-          <Settings style={{ color: "#3f63f5" }} />
+        <IconButton onClick={handleClickMenu} style={{ borderRadius: 5 }}>
+          <Settings
+            style={{
+              color: "#3f63f5",
+            }}
+          />
         </IconButton>
         <Menu
           anchorEl={menuAnchorEl}
@@ -84,26 +94,28 @@ const Navbar = ({ isAuth, companyList, getCompanyList }) => {
         >
           {companyList.map((get, i) => (
             <MenuItem
+              onClick={handleCloseMenu}
               key={i}
-              selected={get.CompanyName}
             >{`${get.CompanyName} - ${get.Company_ID}`}</MenuItem>
           ))}
         </Menu>
-        <div className={styles.userBox}>
-          <IconButton onClick={handleClickUser}>
-            <AccountCircleIcon />
-          </IconButton>
+        <Button
+          className={styles.userBox}
+          onClick={handleClickUser}
+          endIcon={<ArrowDropDownIcon />}
+        >
+          <AccountCircleIcon style={{ margin: "0px 5px" }} />
           <Typography>{user}</Typography>
-        </div>
+        </Button>
         <Menu
-          userAnchorEl={userAnchorEl}
-          open={Boolean(userAnchorEl)}
+          useranchorel={useranchorel}
+          open={Boolean(useranchorel)}
           onClose={handleCloseUser}
           anchorOrigin={{ vertical: "top", horizontal: "right" }}
           keepMounted
           transformOrigin={{ vertical: "top", horizontal: "right" }}
         >
-          <MenuItem>Profile</MenuItem>
+          <MenuItem onClick={handleCloseUser}>Profile</MenuItem>
           <MenuItem onClick={logout}>Sign Out</MenuItem>
         </Menu>
       </Toolbar>
