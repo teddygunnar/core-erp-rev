@@ -11,7 +11,7 @@ import ActionType from "./redux/reducers/constant";
 const App = () => {
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
-  console.log(auth);
+
 
   //USED STATE
   const [message, setMessage] = useState("");
