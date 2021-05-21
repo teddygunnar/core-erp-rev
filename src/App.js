@@ -12,7 +12,7 @@ const App = () => {
   //UTILS
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
-  console.log(auth);
+
 
   //USE STATE
   const [message, setMessage] = useState("");
