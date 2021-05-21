@@ -18,7 +18,7 @@ import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import { ArrowDropDown } from "@material-ui/icons";
 
-const Navbar = ({ isAuth, companyList, getCompanyList }) => {
+const Navbar = ({ setIsAuth, isAuth, companyList, getCompanyList }) => {
   const [user, setUser] = useState(localStorage.getItem("userId"));
   const [useranchorel, setuseranchorel] = useState(null);
   const [menuAnchorEl, setMenuAnchorEl] = useState(null);
@@ -60,11 +60,10 @@ const Navbar = ({ isAuth, companyList, getCompanyList }) => {
   const logout = () => {
     dispatch({ type: ActionType.LOGOUT });
     handleCloseUser();
+    setIsAuth(null);
     MySwal.fire({
       title: <p>You're logged out now!</p>,
       footer: "Thanks for coming!",
-    }).then(() => {
-      window.location.reload();
     });
   };
 

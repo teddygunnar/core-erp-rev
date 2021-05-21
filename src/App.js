@@ -1,22 +1,50 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { Login, Dashboard } from "./Component";
 // import { GetClientKey } from "./api";
 import { key } from "./redux/actions/auth";
+import { fetchTableList } from "./redux/actions/tableData";
 import "./App.css";
 import { useSelector, useDispatch } from "react-redux";
-import { SignIn, CompanyList } from "./api";
+import { SignIn, CompanyList, TableData } from "./api";
 import ActionType from "./redux/reducers/constant";
 
 const App = () => {
+  //UTILS
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
   console.log(auth);
 
-  //USED STATE
+  //USE STATE
   const [message, setMessage] = useState("");
   const [isAuth, setIsAuth] = useState(localStorage.getItem("auth"));
   const [companyList, setCompanyList] = useState([]);
+
+  //GET Table Procurement SR
+  const getTableList = async (session) => {
+    const body = {
+      rqSRList: {
+        COMPANY_ID: "TBP",
+        SITE_ID: "CAMP",
+        USER_ID: "dilly",
+        SESSION_LOGIN_ID: session,
+        FILTER_DAY: "ALL",
+        FILTER_MONTH: "05",
+        FILTER_YEAR: "2020",
+        FILTER_COLOUMN: "",
+        FILTER_VALUE: "",
+        PAGE_NO: "1",
+      },
+    };
+
+    try {
+      const {
+        data: { rsSRList },
+      } = await TableData(body);
+      return Array.from(rsSRList);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   //GET COMPANY LIST
   const getCompanyList = async (username, session) => {
@@ -87,41 +115,28 @@ const App = () => {
   }, [dispatch]);
 
   return (
-    <BrowserRouter>
-      <Switch>
-        {!isAuth ? (
-          <div>
-            <Login
-              setLogin={setLogin}
-              message={message}
-              setMessage={setMessage}
-            />
-          </div>
-        ) : (
-          <div>
-            <Dashboard
-              isAuth={isAuth}
-              setCompanyList={setCompanyList}
-              companyList={companyList}
-              getCompanyList={getCompanyList}
-            />
-          </div>
-        )}
-        <Route
-          path="/"
-          exact
-          render={(props) => (
-            <Login
-              {...props}
-              setLogin={setLogin}
-              message={message}
-              setMessage={setMessage}
-            />
-          )}
-        />
-        <Route path="/dashboard" exact component={Dashboard} />
-      </Switch>
-    </BrowserRouter>
+    <div>
+      {!isAuth ? (
+        <div>
+          <Login
+            setLogin={setLogin}
+            message={message}
+            setMessage={setMessage}
+          />
+        </div>
+      ) : (
+        <div>
+          <Dashboard
+            isAuth={isAuth}
+            setCompanyList={setCompanyList}
+            companyList={companyList}
+            getCompanyList={getCompanyList}
+            setIsAuth={setIsAuth}
+            getTableList={getTableList}
+          />
+        </div>
+      )}
+    </div>
   );
 };
 

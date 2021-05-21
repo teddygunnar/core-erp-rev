@@ -1,0 +1,11 @@
+.sidebarContainer {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+  margin: 50px 25px !important;
+  padding: 15px !important;
+  max-height: 100%;
+  overflow: auto;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4) !important;
+  border: 1px solid rgba(0, 0, 0, 0.2) !important;
+}

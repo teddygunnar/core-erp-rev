@@ -1,0 +1,31 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.formTable {
+  max-width: 100%;
+  padding: 25px;
+}
+
+.flexBox {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menuUpload {
+  width: 550px;
+}
+
+.upload {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  padding: 25px;
+  border-radius: 10px;
+}

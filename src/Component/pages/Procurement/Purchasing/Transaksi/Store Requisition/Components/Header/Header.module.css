@@ -1,0 +1,113 @@
+.mainContainer {
+  max-width: 100%;
+  height: 100%;
+  align-items: center;
+}
+
+.containerHeader {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between !important;
+  align-items: center;
+}
+
+.contHeaderRight {
+  display: flex;
+  flex-direction: row;
+  height: 38px;
+}
+
+.searchIcon {
+  margin: 5px !important;
+}
+
+.searchBar {
+  display: flex !important;
+  flex-direction: row !important;
+  padding: 5px !important;
+  justify-content: center !important;
+  align-items: center !important;
+  flex-direction: row !important;
+  position: relative !important;
+  border-radius: 3px !important;
+  background-color: #fff !important;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+}
+
+.inputBase {
+  max-width: 100%;
+  height: 100%;
+}
+
+.date {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.borderBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #000000;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  box-shadow: 3px 3px 10px #00000029;
+  border-radius: 7px;
+  padding: 20px 25px;
+  margin-left: 10px;
+}
+
+.gridContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.gridItem {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 25px 0px !important;
+  width: 450px !important;
+  height: 54px !important;
+  background-color: #fff;
+  box-shadow: 2px 2px 8px #00000029;
+  border-radius: 15px;
+}
+
+.menu2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 30px 0;
+}
+
+.subMenu2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 31%;
+  height: 50px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+}
+
+.subMenu2 span {
+  margin: 10px;
+  font-weight: bold;
+  font-size: 20px;
+  color: #1d3557;
+}
+
+.valueThisMonth {
+  color: #3f63f5 !important;
+}
+.valueOnProgress {
+  color: #ffa31a !important;
+}
+.valueApproved {
+  color: #00af9e !important;
+}

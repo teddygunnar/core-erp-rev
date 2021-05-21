@@ -7,6 +7,7 @@ const ActionType = {
   /** =================================================== Utils =================================================== */
   LOGOUT: "LOGOUT",
   LOADING: "LOADING",
+  FETCH_TABLE: "FETCH_TABLE",
 
   AUTH: "AUTH",
 };

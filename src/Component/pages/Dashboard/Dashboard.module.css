@@ -1,0 +1,24 @@
+.dashboardMainContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.sideBarContainer {
+  display: block;
+  width: 25%;
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.dashboardMainContent {
+  justify-content: center;
+  align-items: center;
+  overflow: auto;
+  position: relative;
+  padding: 35px 10px;
+  height: 100%;
+  width: 75%;
+}

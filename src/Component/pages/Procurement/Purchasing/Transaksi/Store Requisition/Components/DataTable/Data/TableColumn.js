@@ -1,0 +1,65 @@
+const columns = [
+  {
+    name: "No.",
+    selector: "No",
+    center: true,
+    sortable: true,
+    compact: true,
+    width: "50px",
+  },
+  {
+    name: "No. SR",
+    selector: "noSR",
+    center: true,
+    sortable: true,
+    compact: true,
+    width: "125px",
+  },
+  {
+    name: "Date",
+    selector: "Date",
+    center: true,
+    sortable: true,
+    compact: true,
+    width: "125px",
+  },
+  {
+    name: "Dept",
+    selector: "Dept",
+    center: true,
+    sortable: true,
+    compact: true,
+    width: "85px",
+  },
+  {
+    name: "Keterangan",
+    selector: "Keterangan",
+    sortable: true,
+    wrap: true,
+    width: "665px",
+  },
+  {
+    name: "Appr",
+    selector: "Appr",
+    center: true,
+    sortable: true,
+    compact: true,
+    width: "85px",
+  },
+  {
+    name: "Actv",
+    selector: "Actv",
+    center: true,
+    sortable: true,
+    width: "70px",
+  },
+  {
+    name: "Created",
+    selector: "Created",
+    center: true,
+    sortable: true,
+    width: "82px",
+  },
+];
+
+export default columns;
